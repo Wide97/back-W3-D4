@@ -75,6 +75,7 @@ public class Application {
 
         // Eliminando un evento dovrebbe eliminare anche le partecipazioni ad esso collegate
         eventsDAO.findByIdAndDelete(24);
+        
 
         em.close();
         emf.close();

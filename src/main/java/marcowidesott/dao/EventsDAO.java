@@ -3,6 +3,7 @@ package marcowidesott.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import marcowidesott.entities.Event;
+import marcowidesott.exceptions.NotFoundException;
 
 public class EventsDAO {
     private EntityManager em;
@@ -27,7 +28,11 @@ public class EventsDAO {
     }
 
     public Event findById(long id) {
-        return em.find(Event.class, id);
+        Event found = em.find(Event.class, id);
+        if (found == null) {
+            throw new NotFoundException(id);
+        }
+        return found;
     }
 
     public void findByIdAndDelete(long id) {
@@ -51,4 +56,5 @@ public class EventsDAO {
         }
     }
 }
+
 
